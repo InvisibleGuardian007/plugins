@@ -1,0 +1,72 @@
+{
+  "name": "@magpie-community/page-codex-guard",
+  "version": "0.1.0",
+  "description": "在 magpie 窗口里守护 Codex 桌面端的账号态：体检项目与会话归属是否还在、快照与一键恢复被登出清空的那份文件、可选每 20 秒自动恢复，并显示 codex 5h/7d 额度与路由组的 ceiling。A page in magpie's window: whether Codex's account-state file still holds your projects and chats, a snapshot and one-click restore for when signing out wiped them, an optional 20-second watch, plus codex quota bars and the routing group's ceiling.",
+  "type": "module",
+  "main": "./index.mjs",
+  "files": [
+    "index.mjs",
+    "lib",
+    "page",
+    "ui",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "magpie": ">=0.1.1340",
+    "node": ">=20"
+  },
+  "keywords": [
+    "magpie",
+    "magpie-page",
+    "magpie-plugin",
+    "codex",
+    "quota",
+    "backup",
+    "restore",
+    "accounts"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magpie-community/plugins.git",
+    "directory": "packages/page-codex-guard"
+  },
+  "homepage": "https://github.com/magpie-community/plugins/tree/main/packages/page-codex-guard",
+  "bugs": {
+    "url": "https://github.com/magpie-community/plugins/issues"
+  },
+  "magpie": {
+    "name": "Codex 守护 / Codex guard",
+    "summary": {
+      "en": "Codex desktop keeps its projects and session assignments in .codex/.codex-global-state.json, keyed by the signed-in account: a sign-out rewrites it as an anonymous copy with no projects, so the sidebar shows nothing. This page classifies that file, snapshots it, restores it (optionally by itself, every 20 seconds), and shows the codex account's 5-hour and 7-day windows plus the routing in effect.",
+      "zh": "Codex 桌面端把项目和会话归属存在 .codex/.codex-global-state.json，并按登录态分版本：一登出就被改写成没有项目的匿名版，侧边栏于是空掉。这个页面判断该文件的状态、快照与恢复（可选每 20 秒自动恢复），并显示 codex 账号的 5 小时 / 7 天额度和当前路由。"
+    },
+    "icon": "",
+    "page": {
+      "title": "Codex 守护",
+      "titles": {
+        "en": "Codex guard",
+        "zh": "Codex 守护",
+        "zh-TW": "Codex 守護",
+        "ja": "Codex ガード"
+      },
+      "file": "page/index.html",
+      "icon": "page/icon.svg",
+      "service": {
+        "port": 4391,
+        "option": "port"
+      }
+    },
+    "options": {
+      "port": 4391,
+      "autoRestore": false,
+      "gateway": "http://127.0.0.1:3425",
+      "codexHome": ""
+    },
+    "permissions": []
+  }
+}

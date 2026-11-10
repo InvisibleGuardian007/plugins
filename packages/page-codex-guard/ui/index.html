@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="codex-guard-token" content="__CODEX_GUARD_TOKEN__">
+  <title>Codex 守护</title>
+  <link rel="stylesheet" href="/ui/style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <div>
+        <h1 data-i18n="title">Codex 守护</h1>
+        <p class="sub" data-i18n="subtitle">检查 Codex 的账号态文件，快照它，登出后把它恢复回来。</p>
+      </div>
+    </div>
+    <div class="bar-right">
+      <span id="badge" class="badge">读取中</span>
+      <button id="refresh" type="button" class="ghost" data-i18n="refresh">刷新</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" id="card-state">
+      <h2 data-i18n="stateTitle">登录态</h2>
+      <p id="stateNote" class="note"></p>
+      <dl id="stateList" class="kv"></dl>
+    </section>
+
+    <section class="card" id="card-snapshots">
+      <h2 data-i18n="snapTitle">快照与恢复</h2>
+      <p class="note" data-i18n="snapNote">恢复会先把当前文件存进 pre-restore，再写回所选快照。</p>
+      <div class="row">
+        <select id="snapPick" aria-label="snapshot"></select>
+        <button id="restorePick" type="button" class="primary" data-i18n="restore">恢复所选</button>
+      </div>
+      <div class="row">
+        <input id="snapName" type="text" placeholder="快照名字（可留空）" autocomplete="off">
+        <button id="snapMake" type="button" class="ghost" data-i18n="snapshot">新建快照</button>
+      </div>
+      <div class="row">
+        <label class="check">
+          <input id="auto" type="checkbox">
+          <span data-i18n="autoRestore">发现匿名态时自动恢复</span>
+        </label>
+        <button id="restoreNow" type="button" class="ghost" data-i18n="restoreNow">立即恢复</button>
+      </div>
+      <ul id="log" class="log"></ul>
+    </section>
+
+    <section class="card" id="card-quota">
+      <h2 data-i18n="quotaTitle">codex 额度</h2>
+      <div id="quota"></div>
+    </section>
+
+    <section class="card" id="card-routing">
+      <h2 data-i18n="routeTitle">路由现状</h2>
+      <div id="routing"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/ui/app.js"></script>
+</body>
+</html>
